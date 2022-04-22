@@ -1,0 +1,24 @@
+syntax = "v1"
+
+info (
+	title: "ms_user_account_service"
+	desc:  "用户账户微服务"
+	author: "boyulin"
+	email: "1404916254@qq.com"
+)
+
+type (
+	registerReq {
+		Shorten string `form:"shorten"`
+	}
+	registerResp {
+		Url string `json:"url"`
+	}
+)
+
+service ms_user_account_service-api{
+	@server (
+		handler : RegisterHandler
+	)
+	post /register(registerReq) returns (registerResp)
+}
