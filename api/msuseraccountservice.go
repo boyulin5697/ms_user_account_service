@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 
-	"api/internal/config"
-	"api/internal/handler"
-	"api/internal/svc"
+	"ms_user_account_service/api/internal/config"
+	"ms_user_account_service/api/internal/handler"
+	"ms_user_account_service/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
@@ -26,6 +26,6 @@ func main() {
 
 	handler.RegisterHandlers(server, ctx)
 
-	fmt.Printf("成功在 %s:%d启动用户账户微服务...\n", c.Host, c.Port)
+	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()
 }

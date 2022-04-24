@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package account;
+option go_package="./account";
+
+message TokenExamineRequest {
+  string token = 1;
+}
+
+message TokenExamineResponse {
+  bool isPassed = 1;
+  TokenInfo information = 2;
+}
+message TokenInfo{
+  string userId = 1;
+  string userRight = 2;
+}
+
+service Account {
+  rpc ExamToken(TokenExamineRequest) returns(TokenExamineResponse);
+}

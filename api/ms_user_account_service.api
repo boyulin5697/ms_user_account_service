@@ -9,10 +9,23 @@ info (
 
 type (
 	registerReq {
-		Shorten string `form:"shorten"`
+		Name        string `json:"name"`
+		Password    string `json:"password"`
+		Telephone   string `json:"telephone"`
+		Email       string `json:"email"`
+		CreateTime  string `json:"createTime"`
+		UpdateTime  string `json:"updateTime"`
+		Nationality string `json:"nationaility"`
 	}
-	registerResp {
-		Url string `json:"url"`
+	loginReq {
+		LoginPayLoad string `json:"loginPayLoad"`
+		Password     string `json:"password"`
+	}
+	generalResp {
+		Code    int8   `json:"code"`
+		Message string `json:"message"`
+		//a json object based string
+		Information string `json:"information"`
 	}
 )
 
@@ -20,5 +33,26 @@ service ms_user_account_service-api{
 	@server (
 		handler : RegisterHandler
 	)
-	post /register(registerReq) returns (registerResp)
+	post /register(registerReq) returns (generalResp)
+	
+	@server (
+		handler : LoginHandler
+	)
+	post /login(generalResp)returns(generalResp)
+	
+	@server (
+		handler :DetailHandler
+	)
+	get /getDetail() returns(generalResp)
+	
+	@server (
+		handler: EmailHandler
+	)
+	get /getEmailCode() returns(generalResp)
+	
+	@server (
+		handler : SMSHandler
+	)
+	get /getPhoneCode() returns(generalResp)
+	
 }

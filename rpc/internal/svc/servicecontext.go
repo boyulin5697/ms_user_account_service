@@ -1,8 +1,6 @@
 package svc
 
-import (
-	"ms_user_account_service/api/internal/config"
-)
+import "rpc/internal/config"
 
 type ServiceContext struct {
 	Config config.Config
