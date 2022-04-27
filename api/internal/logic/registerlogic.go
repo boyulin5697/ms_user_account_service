@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"strings"
 
 	"ms_user_account_service/api/internal/svc"
 	"ms_user_account_service/api/internal/types"
@@ -26,6 +27,13 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 }
 
 func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.GeneralResp, err error) {
+	if strings.Contains(req.Name, "@") {
+		resp := new(types.GeneralResp)
+		resp.Code = -1
+		resp.Message = "Register failed!"
+		resp.Information = "Register name invalid!"
+		return resp, nil
+	}
 	newUser := entitydefines.User{}
 	newUser.SetName(req.Name)
 	newUser.SetEmail(req.Email)

@@ -38,7 +38,7 @@ service ms_user_account_service-api{
 	@server (
 		handler : LoginHandler
 	)
-	post /login(generalResp)returns(generalResp)
+	post /login(loginReq)returns(generalResp)
 	
 	@server (
 		handler :DetailHandler

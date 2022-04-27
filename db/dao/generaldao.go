@@ -35,3 +35,17 @@ func ModifyUser(u *entitydefines.User) error {
 	u.Save(db)
 	return nil
 }
+
+//get user by payload
+
+func GetUserByName(payload *string) *entitydefines.User {
+	user := entitydefines.User{}
+	db.Where("name = ?", payload).First(&user)
+	return &user
+}
+
+func GetUserByEmail(payload *string) *entitydefines.User {
+	user := entitydefines.User{}
+	db.Where("email = ?", payload).First(&user)
+	return &user
+}
